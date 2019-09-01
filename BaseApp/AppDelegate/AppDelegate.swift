@@ -8,7 +8,6 @@
 
 import UIKit
 import Reachability
-import SwifterSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

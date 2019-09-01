@@ -19,7 +19,7 @@ class LoginViewModel {
     
     func userLogin(param: [String: Any]) -> Promise<User> {
         return Promise { seal in
-            provider.requestJson(.login(param: param))
+            provider.requestJson(.login(param: param), isCache: false)
                 .mapObject(type: User.self)
                 .subscribe(onNext: { (user) in
                     seal.fulfill(user)

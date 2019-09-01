@@ -8,7 +8,6 @@
 
 import Foundation
 import Moya
-import SwifterSwift
 
 enum APIManager {
     case login(param: [String: Any])

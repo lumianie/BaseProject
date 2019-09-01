@@ -7,3 +7,5 @@
 #import "MBProgressHUD.h"
 
 #import "RTRootNavigationController.h"
+
+#import "HXPhotoPicker.h"

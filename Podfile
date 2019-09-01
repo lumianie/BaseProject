@@ -11,14 +11,11 @@ target 'BaseApp' do
 	pod 'SwiftyUserDefaults'     # UserDefaults
 	pod 'DeviceKit'              # 设备信息
 	pod 'SwiftEntryKit'          # 弹窗视图
-	pod 'InputKitSwift'          # 输入限制
 	pod 'SkeletonView'           # 列表预览视图
-	pod 'SwifterSwift'           # 常用extension
 	pod 'LYEmptyView'            # emptyView
 	pod 'BRPickerView'           # 常用选择器
 	pod 'BAWKWebView'            # WebView
-	pod 'SwiftDate'              # Date
-	pod 'Permission', :git => 'https://github.com/khambir/Permission'            # 权限
+  pod 'SPPermission'            # 权限，注意：可分开引用自己需要的权限
 	pod 'IQKeyboardManagerSwift' # 键盘
 	pod 'FDFullscreenPopGesture' # 返回手势
 	pod 'SDWebImage'             # 加载图片
@@ -30,6 +27,9 @@ target 'BaseApp' do
 	pod 'PromiseKit'             # 线程同步
   pod 'RTRootNavigationController'   # 自定义导航栏
 	pod 'R.swift'                # 资源引用
+  pod 'AutoInch'               # 等比例适配
+  pod 'JXSegmentedView'        # 分页视图控制器
+  pod 'SnapKit'                # 约束
   target 'BaseAppTests' do
     inherit! :search_paths
     # Pods for testing

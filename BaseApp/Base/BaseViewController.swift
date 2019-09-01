@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwifterSwift
 
 enum TransitionType {
     case push
