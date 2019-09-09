@@ -333,7 +333,7 @@
             return;
         }
         [self goPhotoViewController];
-    }else {
+    } else {
         HXPhotoPreviewViewController *vc = [[HXPhotoPreviewViewController alloc] init];
         vc.disableaPersentInteractiveTransition = self.disableaInteractiveTransition;
         vc.outside = YES;

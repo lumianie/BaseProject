@@ -23,7 +23,7 @@ target 'BaseApp' do
   pod 'Moya/RxSwift'           # 网络请求
 	pod 'ObjectMapper'           # json解析
 	pod 'AwesomeCache'	         # 缓存
-	pod 'MBProgressHUD'          # 提示框
+	pod 'Toast-Swift'          # 提示框
 	pod 'PromiseKit'             # 线程同步
   pod 'RTRootNavigationController'   # 自定义导航栏
 	pod 'R.swift'                # 资源引用
