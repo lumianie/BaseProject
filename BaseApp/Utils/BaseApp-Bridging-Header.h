@@ -4,7 +4,6 @@
 
 #import "JPUSHService.h"
 
-#import "MBProgressHUD.h"
 
 #import "RTRootNavigationController.h"
 
