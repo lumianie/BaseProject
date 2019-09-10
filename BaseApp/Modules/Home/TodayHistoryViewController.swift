@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyUserDefaults
 
 class TodayHistoryViewController: BaseViewController {
     lazy var tableView: UITableView = {
@@ -41,7 +42,7 @@ class TodayHistoryViewController: BaseViewController {
                 
         }
     }
-
+    
 }
 
 extension TodayHistoryViewController: UITableViewDelegate, UITableViewDataSource {

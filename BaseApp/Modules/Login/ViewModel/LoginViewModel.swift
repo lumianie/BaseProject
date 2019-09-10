@@ -17,10 +17,10 @@ class LoginViewModel {
                                                     requestClosure: requestClosure,
                                                     manager: SecurityCertificationProvider.manager(), plugins: [NetworkLogger()])
     
-    func userLogin(param: [String: Any]) -> Promise<User> {
+    func userLogin(param: [String: Any]) -> Promise<UserModel> {
         return Promise { seal in
             provider.requestJson(.login(param: param), isCache: false)
-                .mapObject(type: User.self)
+                .mapObject(type: UserModel.self)
                 .subscribe(onNext: { (user) in
                     seal.fulfill(user)
                 }, onError: { (error) in

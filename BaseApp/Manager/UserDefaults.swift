@@ -13,4 +13,6 @@ extension DefaultsKeys {
     static let kNetworkStatus = DefaultsKey<Bool?>("kNetworkStatus", defaultValue: true)
     static let kFirstLaunch = DefaultsKey<Bool?>("kFirstLaunch", defaultValue: false)
     static let kEverLaunch = DefaultsKey<Bool?>("kEverLaunch", defaultValue: true)
+    static let kUserModel = DefaultsKey<UserModel?>("kUserModel")
+
 }
