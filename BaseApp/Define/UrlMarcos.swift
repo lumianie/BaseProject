@@ -10,7 +10,7 @@ import Foundation
 
 public var BaseUrl: String {
     #if DEBUG
-    return "http://devapi"                      //开发环境
+    return "http://api.juheapi.com"                      //开发环境
     #elseif TEST
     return "http://testapi"                     //测试环境
     #elseif PRERELEASE

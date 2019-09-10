@@ -50,7 +50,7 @@ let kColor_00ff00 = kHexColor("00ff00")     //大黄
 let kColor_0000ff = kHexColor("0000ff")     //大蓝
 
 
-//开发的时候打印，但是发布的时候不打印,使用方法，输入print(message: "输入")
+//开发的时候打印，但是发布的时候不打印
 func kLog<T>(message: T, fileName: String = #file, methodName: String = #function, lineNumber: Int = #line) {
     #if DEBUG
     //获取当前时间

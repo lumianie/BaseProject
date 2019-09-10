@@ -14,6 +14,7 @@ enum APIManager {
     case register(param: [String: Any]?)
     case getSomeString
     case postImage(param: [URL])
+    case getTodayHistory(param: [String: Any])
 }
 
 extension APIManager: TargetType {
@@ -37,6 +38,8 @@ extension APIManager: TargetType {
             return "/getSomeString"
         case .postImage(_):
             return "/postImage"
+        case .getTodayHistory:
+            return "/japi/toh"
         }
     }
     
@@ -47,6 +50,8 @@ extension APIManager: TargetType {
         case .getSomeString:
             return .get
         case .postImage(_):
+            return .post
+        case .getTodayHistory:
             return .post
         }
     }
@@ -62,6 +67,8 @@ extension APIManager: TargetType {
             return nil
         case .postImage(_):
             return [:]
+        case .getTodayHistory(let param):
+            return param
         }
     }
     
@@ -75,6 +82,8 @@ extension APIManager: TargetType {
         case .getSomeString:
             return URLEncoding.queryString
         case .postImage(_):
+            return URLEncoding.queryString
+        case .getTodayHistory(let param):
             return URLEncoding.queryString
         }
     }
@@ -111,6 +120,8 @@ extension APIManager: TargetType {
                 formDataAry.append(formData)
             }
             return .uploadCompositeMultipart(formDataAry as! [MultipartFormData], urlParameters: [:])
+        case .getTodayHistory(let param):
+            return .requestParameters(parameters: param, encoding: parameterEncoding)
         }
     }
     
