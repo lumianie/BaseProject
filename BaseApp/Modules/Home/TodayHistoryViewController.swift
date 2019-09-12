@@ -41,6 +41,7 @@ class TodayHistoryViewController: BaseViewController {
             }.catch { (error) in
                 
         }
+        
     }
     
 }

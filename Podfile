@@ -30,6 +30,7 @@ target 'BaseApp' do
   pod 'AutoInch'               # 等比例适配
   pod 'JXSegmentedView'        # 分页视图控制器
   pod 'SnapKit'                # 约束
+  pod 'FSTextView'             # TextView
   target 'BaseAppTests' do
     inherit! :search_paths
     # Pods for testing

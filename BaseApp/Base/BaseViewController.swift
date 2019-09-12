@@ -26,22 +26,6 @@ class BaseViewController: UIViewController {
     }
     
     
-    //导航栏右按钮（图片）
-    lazy var rightButton: UIButton = {
-       let btn = UIButton(type: .custom)
-        btn.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        btn.addTarget(self, action: #selector(rightBtnClicked), for: .touchUpInside)
-        return btn
-    }()
-    //导航栏右按钮（文字）
-    lazy var rightTextButton: UIButton = {
-       let btn = UIButton(type: .custom)
-        btn.frame = CGRect(x: 0, y: 0, width: 60, height: 40)
-        btn.titleLabel?.text = "nextPage"
-        btn.addTarget(self, action: #selector(rightBtnClicked), for: .touchUpInside)
-        return btn
-    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.ViewBackgroundColor
@@ -54,20 +38,24 @@ class BaseViewController: UIViewController {
             self.automaticallyAdjustsScrollViewInsets = false
         }
         // Do any additional setup after loading the view.
-    }
-
-    
-    override func rt_customBackItem(withTarget target: Any!, action: Selector!) -> UIBarButtonItem! {
-        return UIBarButtonItem(image: R.image.backBtn(), style: .plain, target: self, action: #selector(back))
+        if transitionType == .push {
+            let image = R.image.backBtn()
+            let closeItem = UIBarButtonItem(image: image?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(closeItemClick))
+            self.navigationItem.leftBarButtonItem = closeItem;
+        } else {
+            let image = R.image.dismissBtn()
+            let dismissItem = UIBarButtonItem(image: image?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(closeItemClick))
+            self.navigationItem.leftBarButtonItem = dismissItem
+        }
     }
 
     //返回
-    @objc func back() {
+    @objc func closeItemClick() {
         switch transitionType {
-        case .push:
-            self.rt_navigationController.popViewController(animated: true)
-        case .present:
-            self.dismiss(animated: true, completion: nil)
+            case .push:
+                self.rt_navigationController.popViewController(animated: true)
+            case .present:
+                self.dismiss(animated: true, completion: nil)
         }
     }
     //设置导航栏图片
@@ -75,29 +63,9 @@ class BaseViewController: UIViewController {
         let image = R.image.navigationBarBg()?.resizableImage(withCapInsets: UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0), resizingMode: .stretch)
         self.rt_navigationController.navigationBar.setBackgroundImage(image, for: .default)
     }
-    //设置右按钮（图片）
-    func setUpRightNavigationImageBtn() {
-        let rightBarButton = UIBarButtonItem(customView: self.rightButton)
-        self.navigationItem.rightBarButtonItem = rightBarButton
-    }
-    //设置右按钮（文字）
-    func setUpRightNavigationTextBtn() {
-        let rightBarButton = UIBarButtonItem(customView: self.rightTextButton)
-        self.navigationItem.rightBarButtonItems = [self.getNavigationSpacerWithSpacer(spacer: 0), rightBarButton]
-    }
-    //设置导航栏左右按钮的偏移距离
-    func getNavigationSpacerWithSpacer(spacer: CGFloat) -> UIBarButtonItem {
-        let navgationButtonSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        navgationButtonSpacer.width = spacer
-        return navgationButtonSpacer
-    }
     //设置navigation title
     func navigationTitle(title: String, color: UIColor, font: UIFont) {
         self.title = title
         self.rt_navigationController.navigationBar.setTitleFont(font, color: color)
-    }
-    //点击导航栏右侧按钮
-    @objc func rightBtnClicked() {
-        
     }
 }
