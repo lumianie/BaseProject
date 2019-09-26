@@ -15,12 +15,12 @@ class LoginViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        LoginViewModel().userLogin(param: ["username": "xx", "password": "xxxxxxx"])
-            .done { (response) in
-                dump(response)
-            }.catch { (error) in
-                print(error)
+        LoginViewModel().userLogin(param: ["username": "xx", "password": "xxxxxxx"], success: { (response) in
+            
+        }) { (error) in
+            
         }
+        
     }
     
 

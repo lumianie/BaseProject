@@ -35,11 +35,11 @@ class TodayHistoryViewController: BaseViewController {
         // Do any additional setup after loading the view.
         self.view.addSubview(tableView)
         
-        viewModel.getTodayHistory(param: ["key": "a3ac2fa6d2f63640e7f7fd229cc1a8f6", "v": "1.0", "month": Date().month, "day": Date().day]).done {[weak self] (model) in
-            kLog(message: model)
-            self?.modelArray = model.result
-            }.catch { (error) in
-                
+        viewModel.todayHistory(param: ["key": "a3ac2fa6d2f63640e7f7fd229cc1a8f6", "v": "1.0", "month": Date().month, "day": Date().day], success: { (response) in
+            self.modelArray = response.result
+            kLog(message: response)
+        }) { (error) in
+            kLog(message: error)
         }
         
     }

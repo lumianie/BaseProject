@@ -9,7 +9,6 @@
 import Foundation
 import Moya
 import RxSwift
-import PromiseKit
 
 struct HomeViewModel {
     private let disposeBag = DisposeBag()
@@ -17,15 +16,15 @@ struct HomeViewModel {
                                                     requestClosure: requestClosure,
                                                     manager: SecurityCertificationProvider.manager(), plugins: [NetworkLogger()])
     
-    func getTodayHistory(param: [String: Any]) -> Promise<TodayHistoryResponse> {
-        return Promise { seal in
-            provider.requestJson(.getTodayHistory(param: param), isCache: true)
-                .mapObject(type: TodayHistoryResponse.self)
-                .subscribe(onNext: { (user) in
-                    seal.fulfill(user)
-                }, onError: { (error) in
-                    seal.reject(error)
-                }).disposed(by: disposeBag)
-        }
+    func todayHistory(param: [String: Any],
+                      success: @escaping(_ response: TodayHistoryResponse) -> Void,
+                      fail: @escaping(_ error: Error) -> Void) {
+        provider.requestJson(.getTodayHistory(param: param), isCache: true)
+            .mapObject(type: TodayHistoryResponse.self)
+            .subscribe(onNext: { (response) in
+                success(response)
+            }, onError: { (error) in
+                fail(error)
+            }).disposed(by: disposeBag)
     }
 }

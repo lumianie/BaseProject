@@ -34,13 +34,16 @@ extension MoyaProvider {
     
     func sb_request(_ token: Target, isCache: Bool = false) -> Observable<Response> {
         
+        
         return Observable.create { observer in
+            let key = token.cacheKey
+            
+            //每次请求网络前先从本地读取缓存显示出来，网络请求成功后再更新数据
             
             
             // request
             let cancellableToken = self.request(token) { result in
                 
-                let key = token.cacheKey
                 switch result {
                 case let .success(response):
                     /// save memory
@@ -51,16 +54,13 @@ extension MoyaProvider {
                     observer.onNext(response)
                     observer.onCompleted()
                 case let .failure(error):
-                    
-                    // get caches
-                    if  isCache == true, let res = cache[key]{
+                    if  isCache == true, let res = cache[key] {
                         if res.statusCode >= 200 && res.statusCode <= 299 {
                             let response = Response.init(statusCode: res.statusCode, data: res.data, request: res.request, response: (res.response as! HTTPURLResponse))
                             observer.onNext(response)
                         }
-                    } else {
-                        observer.onError(error)
                     }
+                    observer.onError(error)
                 }
             }
             

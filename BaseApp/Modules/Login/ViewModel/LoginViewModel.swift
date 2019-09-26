@@ -9,7 +9,6 @@
 import Foundation
 import Moya
 import RxSwift
-import PromiseKit
 
 class LoginViewModel {
     private let disposeBag = DisposeBag()
@@ -17,15 +16,15 @@ class LoginViewModel {
                                                     requestClosure: requestClosure,
                                                     manager: SecurityCertificationProvider.manager(), plugins: [NetworkLogger()])
     
-    func userLogin(param: [String: Any]) -> Promise<UserModel> {
-        return Promise { seal in
-            provider.requestJson(.login(param: param), isCache: false)
-                .mapObject(type: UserModel.self)
-                .subscribe(onNext: { (user) in
-                    seal.fulfill(user)
-                }, onError: { (error) in
-                    seal.reject(error)
-                }).disposed(by: disposeBag)
-        }
+    func userLogin(param: [String: Any],
+                   success: @escaping(_ response: UserModel) -> Void,
+                   fail: @escaping(_ error: Error) -> Void) {
+        provider.requestJson(.login(param: param), isCache: false)
+            .mapObject(type: UserModel.self)
+            .subscribe(onNext: { (response) in
+                success(response)
+            }, onError: { (error) in
+                fail(error)
+            }).disposed(by: disposeBag)
     }
 }

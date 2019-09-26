@@ -83,7 +83,7 @@ extension APIManager: TargetType {
             return URLEncoding.queryString
         case .postImage(_):
             return URLEncoding.queryString
-        case .getTodayHistory(let param):
+        case .getTodayHistory:
             return URLEncoding.queryString
         }
     }
