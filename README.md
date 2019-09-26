@@ -1,2 +1,2 @@
-# BaseApp
+# BaseProject
 项目基础框架，基于Swift，集成常用的第三方框架，封装网络请求，使用RXSwift+Moya+PromiseKit+ObjectMapper，常用Extension以及基类，不断完善中...
